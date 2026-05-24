@@ -42,6 +42,8 @@ Weekly Safeway grocery bills are high and opaque. There is no native tooling to 
 
 All endpoints are on `www.safeway.com`. Auth is managed by Okta via `ciam.albertsons.com`.
 
+> **Note:** Request/response shapes below are from HAR analysis. Zod schemas in `@safeway-analytics/shared` mirror these shapes with `.passthrough()` for unknown fields. Live API probing during ingestion build-out will tighten schemas (especially Okta refresh and offers wrapper format).
+
 ### Auth
 
 ```
@@ -123,6 +125,16 @@ Headers: content-type: application/vnd.safeway.v2+json
 
 ## Data model
 
+Source of truth: Flyway migrations in [`db/sql/`](db/sql/). Summarized below.
+
+### Schema notes
+
+| Topic | Implementation |
+|-------|----------------|
+| `day_of_week` | Not stored on `receipts` — PostgreSQL rejects `EXTRACT(DOW FROM timestamptz)` in generated columns. Computed in the `dow_spend_patterns` view instead. |
+| `offers` primary key | `BIGSERIAL id` with indexed `offer_id` — supports append-only weekly snapshots of the same offer. |
+| API types | Zod schemas in `@safeway-analytics/shared` are HAR-derived; will be tightened after live API probing during ingestion build-out. |
+
 ### Core tables
 
 ```sql
@@ -130,7 +142,6 @@ CREATE TABLE receipts (
   id                  TEXT PRIMARY KEY,        -- Albertsons _id
   bar_code            TEXT UNIQUE,
   pos_datetime        TIMESTAMPTZ NOT NULL,
-  day_of_week         SMALLINT GENERATED ALWAYS AS (EXTRACT(DOW FROM pos_datetime)) STORED,
   store_id            TEXT NOT NULL,
   store_name          TEXT,
   banner              TEXT,                    -- 'safeway' | 'vons' | etc
@@ -142,7 +153,7 @@ CREATE TABLE receipts (
   payment_type        TEXT,
   last4_card          TEXT,
   raw_payload         JSONB,
-  ingested_at         TIMESTAMPTZ DEFAULT NOW()
+  ingested_at         TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE categories (
@@ -188,20 +199,21 @@ CREATE TABLE price_history (
 );
 
 CREATE TABLE offers (
-  offer_id          TEXT PRIMARY KEY,
-  name              TEXT,
-  brand             TEXT,
-  category          TEXT,
-  offer_pgm         TEXT,                      -- MF | PD | SC
+  id                 BIGSERIAL PRIMARY KEY,
+  offer_id           TEXT NOT NULL,            -- Albertsons offer identifier
+  name               TEXT,
+  brand              TEXT,
+  category           TEXT,
+  offer_pgm          TEXT,                      -- MF | PD | SC
   offer_program_type TEXT,
-  offer_price_raw   TEXT,                      -- e.g. "$1.00 OFF"
-  regular_price     NUMERIC(8,2),
-  description       TEXT,
-  start_date        TIMESTAMPTZ,
-  end_date          TIMESTAMPTZ,
-  status            TEXT,                      -- U=unused, R=redeemed
-  store_id          TEXT,
-  snapshot_at       TIMESTAMPTZ DEFAULT NOW()
+  offer_price_raw    TEXT,                      -- e.g. "$1.00 OFF"
+  regular_price      NUMERIC(8,2),
+  description        TEXT,
+  start_date         TIMESTAMPTZ,
+  end_date           TIMESTAMPTZ,
+  status             TEXT,                      -- U=unused, R=redeemed
+  store_id           TEXT,
+  snapshot_at        TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 ```
 
@@ -221,9 +233,11 @@ FROM price_history
 WHERE observed_at > NOW() - INTERVAL '90 days'
 GROUP BY product_id;
 
--- Staples (bought in ≥60% of trips)
+-- Staples (bought in ≥60% of trips; handles zero-trip cold start)
 CREATE VIEW staple_products AS
-WITH trip_count AS (SELECT COUNT(*) AS total FROM receipts),
+WITH trip_count AS (
+  SELECT COUNT(*)::NUMERIC AS total FROM receipts
+),
 product_freq AS (
   SELECT product_id, COUNT(DISTINCT receipt_id) AS trip_appearances
   FROM line_items GROUP BY product_id
@@ -231,9 +245,15 @@ product_freq AS (
 SELECT
   p.id, p.name, p.department,
   pf.trip_appearances,
-  tc.total AS total_trips,
-  ROUND(pf.trip_appearances::NUMERIC / tc.total * 100, 1) AS frequency_pct,
-  pf.trip_appearances::NUMERIC / tc.total >= 0.6 AS is_staple
+  tc.total::INTEGER AS total_trips,
+  CASE
+    WHEN tc.total = 0 THEN NULL
+    ELSE ROUND(pf.trip_appearances / tc.total * 100, 1)
+  END AS frequency_pct,
+  CASE
+    WHEN tc.total = 0 THEN FALSE
+    ELSE pf.trip_appearances / tc.total >= 0.6
+  END AS is_staple
 FROM product_freq pf
 JOIN products p ON p.id = pf.product_id
 CROSS JOIN trip_count tc;
@@ -250,17 +270,17 @@ JOIN products p ON p.id = li.product_id
 WHERE li.discount_amount > 0
 GROUP BY p.department;
 
--- Day-of-week spend patterns
+-- Day-of-week spend patterns (day_of_week derived from pos_datetime)
 CREATE VIEW dow_spend_patterns AS
 SELECT
-  r.day_of_week,
-  TO_CHAR(r.pos_datetime, 'Day') AS day_name,
+  EXTRACT(DOW FROM r.pos_datetime)::SMALLINT AS day_of_week,
+  TRIM(TO_CHAR(r.pos_datetime, 'Day')) AS day_name,
   AVG(r.final_total)             AS avg_basket,
   AVG(r.discount_total)          AS avg_savings,
   COUNT(*)                       AS trip_count
 FROM receipts r
-GROUP BY r.day_of_week, TO_CHAR(r.pos_datetime, 'Day')
-ORDER BY r.day_of_week;
+GROUP BY EXTRACT(DOW FROM r.pos_datetime), TRIM(TO_CHAR(r.pos_datetime, 'Day'))
+ORDER BY day_of_week;
 ```
 
 ---
@@ -336,9 +356,10 @@ The Okta session has a ~90-day TTL. Strategy:
 
 | Task | Description | Done |
 |------|-------------|------|
-| Repo setup | Monorepo: `packages/api`, `packages/web`, `packages/ingestion` | [ ] |
-| DB schema | Run migrations for all tables and views above | [ ] |
-| `.env` config | `CLUBCARD`, `HHID`, `HOME_STORE_ID`, `JWT_TOKEN` | [ ] |
+| Repo setup | Monorepo: `apps/api`, `apps/web`, `packages/ingestion`, `packages/shared` | [x] |
+| DB schema | Flyway migrations for all tables and views | [x] |
+| `.env` config | `CLUBCARD`, `HHID`, `HOME_STORE_ID`, `JWT_TOKEN` | [x] |
+| Shared types | `@safeway-analytics/shared` — API Zod schemas, env, constants | [x] |
 | `SafewayClient` | Token manager + `fetchReceiptList` + `fetchReceiptDetail` | [ ] |
 | Ingestion CLI | `pnpm ingest` — fetch, dedupe, upsert receipts + line items | [ ] |
 | Product resolver | `bpn`-first matching, name fallback, upsert new products | [ ] |
@@ -387,34 +408,34 @@ The Okta session has a ~90-day TTL. Strategy:
 
 ```
 safeway-analytics/
+├── apps/
+│   ├── api/                    # @safeway-analytics/api — GraphQL server
+│   │   └── src/
+│   │       ├── schema/
+│   │       ├── repos/
+│   │       └── index.ts
+│   └── web/                    # @safeway-analytics/web — React dashboard
+│       └── src/
+│           ├── components/
+│           ├── pages/
+│           └── graphql/        # codegen output
 ├── packages/
-│   ├── ingestion/              # CLI + cron jobs
-│   │   ├── src/
-│   │   │   ├── SafewayClient.ts
-│   │   │   ├── TokenManager.ts
-│   │   │   ├── ingest.ts       # main entry
-│   │   │   ├── resolveProduct.ts
-│   │   │   └── snapshotOffers.ts
-│   │   └── package.json
-│   ├── api/                    # GraphQL API
-│   │   ├── src/
-│   │   │   ├── schema/
-│   │   │   ├── resolvers/
-│   │   │   └── index.ts
-│   │   └── package.json
-│   └── web/                    # React dashboard
-│       ├── src/
-│       │   ├── components/
-│       │   ├── pages/
-│       │   └── graphql/        # codegen output
-│       └── package.json
-├── db/
-│   └── migrations/
-│       ├── 001_schema.sql
-│       └── 002_views.sql
+│   ├── ingestion/              # @safeway-analytics/ingestion — CLI + cron
+│   │   └── src/
+│   │       ├── SafewayClient.ts
+│   │       ├── TokenManager.ts
+│   │       ├── ingest.ts
+│   │       ├── resolveProduct.ts
+│   │       └── snapshotOffers.ts
+│   └── shared/                 # @safeway-analytics/shared — types + env
+│       └── src/
+├── db/sql/                     # Flyway migrations (V1__*.sql)
+├── docs/
+│   └── ARCHITECTURE.md
 ├── .env.example
-├── PRD.md                      # this file
-└── package.json                # pnpm workspace root
+├── PRD.md
+├── README.md
+└── package.json
 ```
 
 ---
@@ -423,21 +444,27 @@ safeway-analytics/
 
 ```bash
 # .env.example — copy to .env, never commit .env
+DATABASE_URL=postgresql://safeway:safeway@localhost:5435/safeway_analytics
 CLUBCARD=
 HHID=
 HOME_STORE_ID=305
-JWT_TOKEN=                      # paste from HAR; refresh via token manager
-DATABASE_URL=postgresql://localhost:5432/safeway_analytics
+OKTA_USER_ID=
+JWT_TOKEN=                      # paste from HAR; refresh via TokenManager
+PORT=4001
+NODE_ENV=development
+VITE_GRAPHQL_URL=http://localhost:4001/graphql
+VITE_API_PROXY_TARGET=http://127.0.0.1:4001
 ```
 
 ---
 
 ## Open questions
 
-- [ ] JWT refresh: store in `.env` (simple) or OS keychain (more secure)?
+- [x] JWT refresh: store in `.env` (simple) — v1 default; OS keychain deferred
 - [ ] Product normalization: run Claude API batch on items missing `bpn`, or defer?
 - [ ] Offers matching: match offer `brand` string against `products.name` — fuzzy match threshold TBD
-- [ ] Rate limiting: Albertsons API tolerance unknown — start at 1 req/sec, observe
+- [x] Rate limiting: start at 1 req/sec (`RATE_LIMIT_MS` in shared constants)
+- [ ] Live API validation: confirm Okta refresh response shape and offers wrapper format (in progress)
 
 ---
 
@@ -448,6 +475,10 @@ DATABASE_URL=postgresql://localhost:5432/safeway_analytics
 | `bpn` as primary product key | Deterministic cross-receipt matching; no LLM needed for most items |
 | Single `POST /instore` endpoint for list + detail | Same endpoint, different params — dedupe on `_id` |
 | Offers snapshot (not live) | Offers endpoint needs no auth; snapshot weekly to build deal history over time |
+| Offers surrogate PK | Append-only snapshots require storing the same `offer_id` across weeks |
+| DOW in analytics view | PostgreSQL generated columns cannot use `EXTRACT(DOW FROM timestamptz)` |
 | Frequency-based staples (≥60%) | Simple, self-calibrating with real data; cold-start handled by trip count threshold |
 | Monorepo (pnpm workspaces) | Shared types between ingestion + API + web without duplication |
+| `apps/*` + `packages/*` layout | Runnable services in `apps/`; CLI and shared libs in `packages/` |
 | GraphQL schema-first | Enables frontend to develop against mock data in parallel |
+| HAR-first API schemas | Zod types in shared package; tighten after live API probing |

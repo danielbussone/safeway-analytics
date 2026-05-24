@@ -132,6 +132,8 @@ Okta session TTL is ~90 days. v1 strategy:
 
 ## Dev workflow
 
+See [README.md](../README.md) for quick start. Summary:
+
 ```bash
 cp .env.example .env          # fill CLUBCARD, JWT_TOKEN, etc.
 docker compose up -d db

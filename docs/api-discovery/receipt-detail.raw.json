@@ -1,0 +1,705 @@
+{
+  "receipts": [
+    {
+      "posDateTime": "2026-05-20T21:51:05",
+      "dateString": "May 20, 2026",
+      "timeString": "09:51 PM",
+      "storeId": "2719",
+      "address": {
+        "line1": "525 EL CAMINO REAL",
+        "line2": "N/A",
+        "city": "MENLO PARK",
+        "state": "CA",
+        "zipcode": "94025",
+        "country": "USA"
+      },
+      "phone": "[REDACTED_ID]",
+      "storeName": "Safeway",
+      "banner": "safeway",
+      "workStationId": "5",
+      "operatorId": "5525",
+      "transactionCount": 1,
+      "regularPriceTotal": "211.94",
+      "discountTotal": "40.81",
+      "reducedPriceTotal": "171.13",
+      "returnsTotal": "0.00",
+      "transactionId": "[REDACTED_ID]",
+      "source": "INSTORE",
+      "items": [
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "6.99",
+          "discount": "1.00",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "5.99",
+          "regularPriceTotal": "6.99",
+          "discountTotal": "1.00",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "5.99",
+          "department": "BAKED GOODS",
+          "isFuel": false,
+          "bpn": "196052221",
+          "name": "MILTONS BREAD MULTI-GRAIN"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "8.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "8.99",
+          "regularPriceTotal": "8.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "8.99",
+          "department": "DELI",
+          "isFuel": false,
+          "bpn": "960242004",
+          "name": "BOARS HEAD OVEN ROAST TURKEY"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "3.79",
+          "discount": "0.80",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "0.80",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "2.99",
+          "regularPriceTotal": "3.79",
+          "discountTotal": "0.80",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "0.80",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "2.99",
+          "department": "GROCERY",
+          "isFuel": false,
+          "bpn": "960304782",
+          "name": "SMT CRUSHED TOMATOES"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "26.99",
+          "discount": "4.00",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "4.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "22.99",
+          "regularPriceTotal": "26.99",
+          "discountTotal": "4.00",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "4.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "22.99",
+          "department": "GROCERY",
+          "isFuel": false,
+          "name": "PEETS COFFEE FRENCH ROAST DARK ROAST GROUND COFFEE 28OZ BAG"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "9751",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "0.10",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "0.10",
+          "regularPriceTotal": "0.10",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "0.10",
+          "department": "LIQUOR",
+          "isFuel": false,
+          "name": "CRV WINE  SINGLE               RATE 2 TAX NFS"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "15.99",
+          "discount": "4.89",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "4.89",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "11.10",
+          "regularPriceTotal": "15.99",
+          "discountTotal": "4.89",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "4.89",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "11.10",
+          "department": "LIQUOR",
+          "isFuel": false,
+          "bpn": "189053937",
+          "name": "WENTE SAUVIGNON BLANC WINE"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 2.61,
+          "weightItem": true,
+          "regularPrice": "3.99",
+          "discount": "1.00",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "2.99",
+          "regularPriceTotal": "10.41",
+          "discountTotal": "2.61",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "2.61",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "7.80",
+          "department": "MEAT",
+          "isFuel": false,
+          "bpn": "960031028",
+          "name": "SIGNATURE SELECT CHICKEN BREAST BONELESS SKINLESS W/RIB MEAT     MULTI-BILLING"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "4074",
+          "quantity": 2.55,
+          "weightItem": true,
+          "regularPrice": "1.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "1.99",
+          "regularPriceTotal": "5.07",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "5.07",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "name": "POTATOES/YAMS SWEET RED"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "4782",
+          "quantity": 2.18,
+          "weightItem": true,
+          "regularPrice": "2.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "2.99",
+          "regularPriceTotal": "6.52",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "6.52",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "name": "SQUASH YELLOW NECK"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "5.00",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "5.00",
+          "regularPriceTotal": "5.00",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "5.00",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "970498618",
+          "name": "SIGNATURE SELECT GREEN BEANS FAMILY PACK 20 OZ"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": true,
+          "regularPrice": "4.99",
+          "discount": "4.99",
+          "discounts": [
+            {
+              "code": "65242296",
+              "amount": "4.99",
+              "category": "Savings"
+            }
+          ],
+          "reducedPrice": "0.00",
+          "regularPriceTotal": "4.99",
+          "discountTotal": "4.99",
+          "discountTotals": [
+            {
+              "code": "65242296",
+              "amount": "4.99",
+              "category": "Savings"
+            }
+          ],
+          "reducedPriceTotal": "0.00",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "960131353",
+          "name": "WATERMELON CUP"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": true,
+          "regularPrice": "4.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "4.99",
+          "regularPriceTotal": "4.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "4.99",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "960131354",
+          "name": "CANTALOUPE CUP"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": true,
+          "regularPrice": "6.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "6.99",
+          "regularPriceTotal": "6.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "6.99",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "960131552",
+          "name": "MANGO CUP"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1.75,
+          "weightItem": true,
+          "regularPrice": "0.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "0.99",
+          "regularPriceTotal": "1.73",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "1.73",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "184060007",
+          "name": "BANANAS"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "6.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "6.99",
+          "regularPriceTotal": "6.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "6.99",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "960012546",
+          "name": "STRAWBERRIES PREPACKED"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "6.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "6.99",
+          "regularPriceTotal": "6.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "6.99",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "960013615",
+          "name": "DRISCOLLS RASPBERRIES RED 12 OZ"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "6.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "6.99",
+          "regularPriceTotal": "6.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "6.99",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "184070075",
+          "name": "DRISCOLLS BLACKBERRIES 12 OZ"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "6.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "6.99",
+          "regularPriceTotal": "6.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "6.99",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "960494206",
+          "name": "SUNGOLD KIWI CLAMSHELL ORGANIC"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 2,
+          "weightItem": false,
+          "regularPrice": "1.99",
+          "discount": "0.74",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "0.74",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "1.25",
+          "regularPriceTotal": "3.98",
+          "discountTotal": "1.48",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.48",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "2.50",
+          "department": "PRODUCE",
+          "isFuel": false,
+          "bpn": "184150286",
+          "name": "MANGOS LARGE"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 2,
+          "weightItem": false,
+          "regularPrice": "4.49",
+          "discount": "2.50",
+          "discounts": [
+            {
+              "code": "69253047",
+              "amount": "2.50",
+              "category": "Savings"
+            }
+          ],
+          "reducedPrice": "1.99",
+          "regularPriceTotal": "8.98",
+          "discountTotal": "5.00",
+          "discountTotals": [
+            {
+              "code": "69253047",
+              "amount": "5.00",
+              "category": "Savings"
+            }
+          ],
+          "reducedPriceTotal": "3.98",
+          "department": "REFRIG/FROZEN",
+          "isFuel": false,
+          "bpn": "960491279",
+          "name": "LUCERNE CHEDDAR JACK RUSTIC CUT CHEESE SHRED"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "4.99",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "4.99",
+          "regularPriceTotal": "4.99",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "4.99",
+          "department": "REFRIG/FROZEN",
+          "isFuel": false,
+          "bpn": "136050140",
+          "name": "LUCERNE 2% LACTOSE FREE MILK WITH CALCIUM HG"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "4.49",
+          "discount": "1.99",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.99",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "2.50",
+          "regularPriceTotal": "4.49",
+          "discountTotal": "1.99",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.99",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "2.50",
+          "department": "REFRIG/FROZEN",
+          "isFuel": false,
+          "bpn": "136250005",
+          "name": "KNUDSEN SMALL CURD COTTAGE CHEESE"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "6.49",
+          "discount": "0.00",
+          "discounts": [],
+          "reducedPrice": "6.49",
+          "regularPriceTotal": "6.49",
+          "discountTotal": "0.00",
+          "discountTotals": [],
+          "reducedPriceTotal": "6.49",
+          "department": "REFRIG/FROZEN",
+          "isFuel": false,
+          "name": "O ORGANICS WHOLE MILK PLUS DHA OMEGA 3 64 FZ"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "7.99",
+          "discount": "2.00",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "2.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "5.99",
+          "regularPriceTotal": "7.99",
+          "discountTotal": "2.00",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "2.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "5.99",
+          "department": "REFRIG/FROZEN",
+          "isFuel": false,
+          "bpn": "960050144",
+          "name": "FAGE TOTAL 2% GREEK YOGURT STRAINED PLAIN"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 1,
+          "weightItem": false,
+          "regularPrice": "8.99",
+          "discount": "1.50",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.50",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "7.49",
+          "regularPriceTotal": "8.99",
+          "discountTotal": "1.50",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "1.50",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "7.49",
+          "department": "REFRIG/FROZEN",
+          "isFuel": false,
+          "bpn": "960100476",
+          "name": "HAPPY EGG FREE RANGE LARGE GRADE A EGGS"
+        },
+        {
+          "lineItemType": "Sale",
+          "id": "[REDACTED_ID]",
+          "quantity": 2.11,
+          "weightItem": true,
+          "regularPrice": "13.99",
+          "discount": "5.00",
+          "discounts": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "5.00",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPrice": "8.99",
+          "regularPriceTotal": "29.52",
+          "discountTotal": "10.55",
+          "discountTotals": [
+            {
+              "code": "[REDACTED_ID]",
+              "amount": "10.55",
+              "category": "Sale Savings"
+            }
+          ],
+          "reducedPriceTotal": "18.97",
+          "department": "SEAFOOD",
+          "isFuel": false,
+          "bpn": "186190050",
+          "name": "SALMON ATLANTIC FILLET FARM RAISED COLOR ADDED FRESH VALUE PACK"
+        }
+      ],
+      "loyalty": {
+        "id": "[REDACTED_ID]",
+        "discountTotal": "30.82",
+        "pointsAwarded": 0,
+        "programId": "HHID",
+        "accountId": "[REDACTED_ID]"
+      },
+      "tax": {
+        "taxableAmount": "11.20",
+        "amount": "1.05",
+        "percent": "9.38"
+      },
+      "taxAmount": 1.05,
+      "clubcard": "[REDACTED]",
+      "itemCount": 27,
+      "tenders": [
+        {
+          "type": "Credit/Debit",
+          "typeCode": "Sale",
+          "amount": "172.18",
+          "authorizationCode": "[REDACTED]",
+          "referenceNumber": "[REDACTED_ID]",
+          "authorizationDateTime": "[REDACTED]",
+          "authorizationDate": "[REDACTED]",
+          "authorizationTime": "[REDACTED]",
+          "cardType": "Visa",
+          "creditDebit": "Credit",
+          "cardNumber": "[REDACTED]"
+        }
+      ],
+      "paymentType": "Credit/Debit",
+      "last4CardNumber": "[REDACTED]",
+      "basketDiscounts": [
+        {
+          "name": "Member/4u Savings",
+          "amount": "40.81",
+          "typeCode": "Sale",
+          "category": "Calculated"
+        }
+      ],
+      "discountTotals": [
+        {
+          "category": "Sale Savings",
+          "amount": "30.82"
+        },
+        {
+          "category": "Other Savings",
+          "amount": "9.99"
+        }
+      ],
+      "hhid": "[REDACTED_ID]",
+      "barCode": "[REDACTED_ID]",
+      "finalTotal": "172.18",
+      "firstThreeBpn": [
+        "136050140",
+        "960050144",
+        "960494206"
+      ],
+      "includesFuel": false,
+      "includesReturn": false,
+      "emailingEnabled": true,
+      "savedAt": "2026-05-21T04:51:24.601Z",
+      "generalSupportContact": "1-877-723-3929",
+      "generalSupportText": "LET US HEAR FROM YOU! 1-877-723-3929",
+      "paymentSupportContact": "1-866-392-9517",
+      "paymentSupportText": "FOR QUESTIONS ABOUT YOUR PAYMENT CALL PAYMENT SERVICES AT 1-866-392-9517"
+    }
+  ]
+}

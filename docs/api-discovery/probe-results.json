@@ -1,0 +1,339 @@
+[
+  {
+    "name": "receipt-list",
+    "ok": true,
+    "topLevelKeys": [
+      "receipts"
+    ],
+    "schema": {
+      "type": "object",
+      "fields": {
+        "receipts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "fields": {
+              "_id": {
+                "type": "string",
+                "example": "6a0e8f4c1860fd23d89ea5ba"
+              },
+              "barCode": {
+                "type": "string",
+                "example": "[REDACTED_ID]"
+              },
+              "posDateTime": {
+                "type": "string",
+                "example": "2026-05-20T21:51:05.000Z"
+              },
+              "dateString": {
+                "type": "string",
+                "example": "May 20, 2026"
+              },
+              "timeString": {
+                "type": "string",
+                "example": "09:51 PM"
+              },
+              "banner": {
+                "type": "string",
+                "example": "safeway"
+              },
+              "firstThreeBpn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "136050140"
+                },
+                "length": 3
+              },
+              "itemCount": {
+                "type": "number"
+              },
+              "finalTotal": {
+                "type": "string",
+                "example": "172.18"
+              },
+              "source": {
+                "type": "string",
+                "example": "INSTORE"
+              },
+              "storeName": {
+                "type": "string",
+                "example": "Safeway"
+              },
+              "includesFuel": {
+                "type": "boolean"
+              },
+              "includesReturn": {
+                "type": "boolean"
+              },
+              "paymentType": {
+                "type": "string",
+                "example": "Credit/Debit"
+              }
+            }
+          },
+          "length": 69
+        }
+      }
+    },
+    "sampleCount": 69,
+    "httpStatus": 200
+  },
+  {
+    "name": "receipt-detail",
+    "ok": true,
+    "topLevelKeys": [
+      "receipts"
+    ],
+    "schema": {
+      "type": "object",
+      "fields": {
+        "receipts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "fields": {
+              "posDateTime": {
+                "type": "string",
+                "example": "2026-05-20T21:51:05"
+              },
+              "dateString": {
+                "type": "string",
+                "example": "May 20, 2026"
+              },
+              "timeString": {
+                "type": "string",
+                "example": "09:51 PM"
+              },
+              "storeId": {
+                "type": "string",
+                "example": "2719"
+              },
+              "address": {
+                "type": "object",
+                "fields": {
+                  "line1": {
+                    "type": "string",
+                    "example": "525 EL CAMINO REAL"
+                  },
+                  "line2": {
+                    "type": "string",
+                    "example": "N/A"
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "MENLO PARK"
+                  },
+                  "state": {
+                    "type": "string",
+                    "example": "CA"
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "example": "94025"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "USA"
+                  }
+                }
+              },
+              "phone": {
+                "type": "string",
+                "example": "[REDACTED_ID]"
+              },
+              "storeName": {
+                "type": "string",
+                "example": "Safeway"
+              },
+              "banner": {
+                "type": "string",
+                "example": "safeway"
+              },
+              "workStationId": {
+                "type": "string",
+                "example": "5"
+              },
+              "operatorId": {
+                "type": "string",
+                "example": "5525"
+              },
+              "transactionCount": {
+                "type": "number"
+              },
+              "regularPriceTotal": {
+                "type": "string",
+                "example": "211.94"
+              },
+              "discountTotal": {
+                "type": "string",
+                "example": "40.81"
+              },
+              "reducedPriceTotal": {
+                "type": "string",
+                "example": "171.13"
+              },
+              "returnsTotal": {
+                "type": "string",
+                "example": "0.00"
+              },
+              "transactionId": {
+                "type": "string",
+                "example": "[REDACTED_ID]"
+              },
+              "source": {
+                "type": "string",
+                "example": "INSTORE"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                },
+                "length": 26
+              },
+              "loyalty": {
+                "type": "object",
+                "fields": {
+                  "id": {
+                    "type": "string",
+                    "example": "[REDACTED_ID]"
+                  },
+                  "discountTotal": {
+                    "type": "string",
+                    "example": "30.82"
+                  },
+                  "pointsAwarded": {
+                    "type": "number"
+                  },
+                  "programId": {
+                    "type": "string",
+                    "example": "HHID"
+                  },
+                  "accountId": {
+                    "type": "string",
+                    "example": "[REDACTED_ID]"
+                  }
+                }
+              },
+              "tax": {
+                "type": "object",
+                "fields": {
+                  "taxableAmount": {
+                    "type": "string",
+                    "example": "11.20"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "example": "1.05"
+                  },
+                  "percent": {
+                    "type": "string",
+                    "example": "9.38"
+                  }
+                }
+              },
+              "taxAmount": {
+                "type": "number"
+              },
+              "clubcard": "[REDACTED]",
+              "itemCount": {
+                "type": "number"
+              },
+              "tenders": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                },
+                "length": 1
+              },
+              "paymentType": {
+                "type": "string",
+                "example": "Credit/Debit"
+              },
+              "last4CardNumber": "[REDACTED]",
+              "basketDiscounts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                },
+                "length": 1
+              },
+              "discountTotals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                },
+                "length": 2
+              },
+              "hhid": {
+                "type": "string",
+                "example": "[REDACTED_ID]"
+              },
+              "barCode": {
+                "type": "string",
+                "example": "[REDACTED_ID]"
+              },
+              "finalTotal": {
+                "type": "string",
+                "example": "172.18"
+              },
+              "firstThreeBpn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "136050140"
+                },
+                "length": 3
+              },
+              "includesFuel": {
+                "type": "boolean"
+              },
+              "includesReturn": {
+                "type": "boolean"
+              },
+              "emailingEnabled": {
+                "type": "boolean"
+              },
+              "savedAt": {
+                "type": "string",
+                "example": "2026-05-21T04:51:24.601Z"
+              },
+              "generalSupportContact": {
+                "type": "string",
+                "example": "1-877-723-3929"
+              },
+              "generalSupportText": {
+                "type": "string",
+                "example": "LET US HEAR FROM YOU! 1-877-723-3929"
+              },
+              "paymentSupportContact": {
+                "type": "string",
+                "example": "1-866-392-9517"
+              },
+              "paymentSupportText": {
+                "type": "string",
+                "example": "FOR QUESTIONS ABOUT YOUR PAYMENT CALL PAYMENT SERVICES AT 1-866-392-9517"
+              }
+            }
+          },
+          "length": 1
+        }
+      }
+    },
+    "httpStatus": 200
+  },
+  {
+    "name": "offers",
+    "ok": false,
+    "topLevelKeys": [],
+    "schema": {
+      "type": "unknown"
+    },
+    "parseError": "All offer store candidates failed"
+  }
+]

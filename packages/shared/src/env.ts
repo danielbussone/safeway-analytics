@@ -14,7 +14,10 @@ export const safewayEnvSchema = z.object({
   HHID: z.string().optional(),
   HOME_STORE_ID: z.string().min(1).default("305"),
   OKTA_USER_ID: z.string().optional(),
-  JWT_TOKEN: z.string().min(1, "JWT_TOKEN is required"),
+  JWT_TOKEN: z
+    .string()
+    .min(1, "JWT_TOKEN is required")
+    .transform((value) => value.trim().replace(/^Bearer\s+/i, "")),
   PORT: z.coerce.number().int().positive().default(4001),
   NODE_ENV: z
     .enum(["development", "production", "test"])

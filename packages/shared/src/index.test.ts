@@ -63,6 +63,38 @@ describe("env schema", () => {
 });
 
 describe("safeway api schemas", () => {
+  it("parses wrapped receipt list responses", () => {
+    const receipts = parseReceiptListResponse({
+      receipts: [
+        {
+          _id: "abc123",
+          posDateTime: "2025-01-15T18:30:00.000Z",
+          itemCount: 12,
+          finalTotal: "84.32",
+          banner: "safeway",
+        },
+      ],
+    });
+
+    expect(receipts).toHaveLength(1);
+    expect(receipts[0]?._id).toBe("abc123");
+  });
+
+  it("parses wrapped receipt detail responses", () => {
+    const receipt = parseReceiptDetailResponse({
+      receipts: [
+        {
+          posDateTime: "2025-01-15T18:30:00.000Z",
+          storeId: "305",
+          items: [{ id: "1", name: "TEST ITEM", bpn: "123" }],
+        },
+      ],
+    });
+
+    expect(receipt.items).toHaveLength(1);
+    expect(receipt.storeId).toBe("305");
+  });
+
   it("parses receipt list summaries", () => {
     const receipts = parseReceiptListResponse([
       {

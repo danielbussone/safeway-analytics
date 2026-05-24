@@ -13,9 +13,11 @@
     "db:migrate": "docker compose --profile tools run --rm flyway",
     "db:repair": "docker compose --profile tools run --rm flyway repair",
     "ingest": "pnpm --filter @safeway-analytics/ingestion ingest",
-    "ingest:offers": "pnpm --filter @safeway-analytics/ingestion ingest:offers"
+    "ingest:offers": "pnpm --filter @safeway-analytics/ingestion ingest:offers",
+    "probe": "pnpm --filter @safeway-analytics/ingestion probe"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.2"
   }
 }

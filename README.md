@@ -4,7 +4,7 @@ Personal grocery analytics for Albertsons/Safeway receipts. Ingests in-store pur
 
 **Stack:** pnpm monorepo · TypeScript · GraphQL (Yoga + Pothos) · React (Vite + Tailwind) · PostgreSQL (Flyway + pgvector)
 
-**Status:** In development — database schema and shared types are in place; ingestion, API, and dashboard are next.
+**Status:** In development — database, shared types, and ingestion CLI are in place; API and dashboard are next.
 
 ## Prerequisites
 
@@ -26,6 +26,7 @@ Personal grocery analytics for Albertsons/Safeway receipts. Ingests in-store pur
 cp .env.example .env          # fill CLUBCARD, JWT_TOKEN, etc.
 docker compose up -d db
 pnpm install
+pnpm install
 pnpm db:migrate
 ```
 
@@ -34,6 +35,7 @@ When ingestion and the dashboard are wired up:
 ```bash
 pnpm ingest                   # backfill receipts from Safeway API
 pnpm ingest:offers            # snapshot J4U offers for your home store
+pnpm probe                    # probe live API (optional, before first ingest)
 pnpm dev                      # GraphQL API + React dashboard
 ```
 
@@ -64,8 +66,9 @@ Paste `JWT_TOKEN` from a Safeway browser session HAR capture on first setup. Whe
 | `pnpm lint` | Typecheck all packages |
 | `pnpm db:migrate` | Run Flyway migrations |
 | `pnpm db:repair` | Flyway repair |
-| `pnpm ingest` | Sync receipts from Safeway API (requires `packages/ingestion`) |
-| `pnpm ingest:offers` | Snapshot J4U offers (requires `packages/ingestion`) |
+| `pnpm ingest` | Sync receipts from Safeway API |
+| `pnpm ingest:offers` | Snapshot J4U offers for your home store |
+| `pnpm probe` | Probe live Safeway API; writes redacted samples to `docs/api-discovery/` |
 
 ### Offers cron (weekly)
 

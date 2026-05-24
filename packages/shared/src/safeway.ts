@@ -49,21 +49,48 @@ export const receiptSummarySchema = z
 
 export type ReceiptSummary = z.infer<typeof receiptSummarySchema>;
 
-export const receiptDetailSchema = receiptSummarySchema
-  .extend({
+export const receiptDetailSchema = z
+  .object({
+    _id: z.string().optional(),
+    posDateTime: z.string(),
+    itemCount: z.number().optional(),
+    finalTotal: moneyValueSchema.optional(),
+    banner: z.string().optional(),
+    storeId: z.string().optional(),
+    storeName: z.string().optional(),
     barCode: z.string().optional(),
     regularPriceTotal: moneyValueSchema.optional(),
     discountTotal: moneyValueSchema.optional(),
     reducedPriceTotal: moneyValueSchema.optional(),
     paymentType: z.string().optional(),
     last4Card: z.string().optional(),
+    last4CardNumber: z.string().optional(),
+    transactionId: z.string().optional(),
     items: z.array(receiptItemSchema).default([]),
   })
   .passthrough();
 
 export type ReceiptDetail = z.infer<typeof receiptDetailSchema>;
 
-export const receiptListResponseSchema = z.array(receiptSummarySchema);
+export const receiptListResponseSchema = z.union([
+  z.array(receiptSummarySchema),
+  z
+    .object({
+      receipts: z.array(receiptSummarySchema),
+    })
+    .passthrough()
+    .transform((payload) => payload.receipts),
+]);
+
+export const receiptDetailResponseSchema = z.union([
+  receiptDetailSchema,
+  z
+    .object({
+      receipts: z.array(receiptDetailSchema).min(1),
+    })
+    .passthrough()
+    .transform((payload) => payload.receipts[0]!),
+]);
 
 export const instoreListRequestSchema = z.object({
   params: z.object({
@@ -155,7 +182,7 @@ export function parseReceiptListResponse(data: unknown): ReceiptSummary[] {
 }
 
 export function parseReceiptDetailResponse(data: unknown): ReceiptDetail {
-  return receiptDetailSchema.parse(data);
+  return receiptDetailResponseSchema.parse(data);
 }
 
 export function parseOffersResponse(data: unknown): Offer[] {

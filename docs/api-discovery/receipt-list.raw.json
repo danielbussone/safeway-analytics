@@ -1,0 +1,1384 @@
+{
+  "receipts": [
+    {
+      "_id": "6a0e8f4c1860fd23d89ea5ba",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-05-20T21:51:05.000Z",
+      "dateString": "May 20, 2026",
+      "timeString": "09:51 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960050144",
+        "960494206"
+      ],
+      "itemCount": 27,
+      "finalTotal": "172.18",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6a0a4311cd373e089c889c38",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-05-17T15:36:00.000Z",
+      "dateString": "May 17, 2026",
+      "timeString": "03:36 PM",
+      "banner": "vons",
+      "firstThreeBpn": [
+        "188560205",
+        "196050883",
+        "184020066"
+      ],
+      "itemCount": 38,
+      "finalTotal": "182.76",
+      "source": "INSTORE",
+      "storeName": "Vons",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6a07cacc852dd417009d4ff5",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-05-15T18:39:11.000Z",
+      "dateString": "May 15, 2026",
+      "timeString": "06:39 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "960064612",
+        "184700330"
+      ],
+      "itemCount": 17,
+      "finalTotal": "97.20",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6a015465cd1aad3d687a615b",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-05-10T21:00:19.000Z",
+      "dateString": "May 10, 2026",
+      "timeString": "09:00 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960119431",
+        "184700157"
+      ],
+      "itemCount": 51,
+      "finalTotal": "279.97",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69f7d1f10314244588d08883",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-05-03T15:52:25.000Z",
+      "dateString": "May 3, 2026",
+      "timeString": "03:52 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136050140",
+        "960223126"
+      ],
+      "itemCount": 61,
+      "finalTotal": "411.41",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69f54c4493a0783dac25a758",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-05-01T17:57:51.000Z",
+      "dateString": "May 1, 2026",
+      "timeString": "05:57 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "112020043",
+        "960123344",
+        "113400083"
+      ],
+      "itemCount": 5,
+      "finalTotal": "37.73",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69f03ad8958df82cf4be14ed",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-04-27T21:42:32.000Z",
+      "dateString": "Apr 27, 2026",
+      "timeString": "09:42 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136050140",
+        "121350025"
+      ],
+      "itemCount": 50,
+      "finalTotal": "405.99",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69e973665aea7b248c5628fb",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-04-22T18:18:21.000Z",
+      "dateString": "Apr 22, 2026",
+      "timeString": "06:18 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960109455",
+        "970031819",
+        "960456259"
+      ],
+      "itemCount": 6,
+      "finalTotal": "56.80",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69e5b211a97c10372c42c524",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-04-19T21:56:15.000Z",
+      "dateString": "Apr 19, 2026",
+      "timeString": "09:56 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136050140",
+        "165220010"
+      ],
+      "itemCount": 56,
+      "finalTotal": "364.12",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69e17f65580fbe33800e2668",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-04-16T17:31:07.000Z",
+      "dateString": "Apr 16, 2026",
+      "timeString": "05:31 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "970309819",
+        "960100476"
+      ],
+      "itemCount": 24,
+      "finalTotal": "111.60",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69d844f479258f11bc0bd924",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-04-09T17:31:01.000Z",
+      "dateString": "Apr 9, 2026",
+      "timeString": "05:31 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960050144",
+        "960082464",
+        "960013615"
+      ],
+      "itemCount": 16,
+      "finalTotal": "178.61",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69c9fdb8bb77a33bbcf064db",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-03-29T21:35:47.000Z",
+      "dateString": "Mar 29, 2026",
+      "timeString": "09:35 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136011343",
+        "196050883",
+        "960038547"
+      ],
+      "itemCount": 48,
+      "finalTotal": "315.28",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69c5d0441b41c432245da5db",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-03-26T17:32:36.000Z",
+      "dateString": "Mar 26, 2026",
+      "timeString": "05:32 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960013615",
+        "960536346",
+        "184070027"
+      ],
+      "itemCount": 11,
+      "finalTotal": "51.78",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69c0763db005d4269cbb9403",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-03-22T16:07:55.000Z",
+      "dateString": "Mar 22, 2026",
+      "timeString": "04:07 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136011343",
+        "196050883"
+      ],
+      "itemCount": 54,
+      "finalTotal": "376.32",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69bb7bc6250dc71c6c6c186e",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-03-18T21:29:16.000Z",
+      "dateString": "Mar 18, 2026",
+      "timeString": "09:29 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970009851",
+        "960371120",
+        "960293957"
+      ],
+      "itemCount": 10,
+      "finalTotal": "79.70",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69b78ea1b84967081c39d71d",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-03-15T22:01:01.000Z",
+      "dateString": "Mar 15, 2026",
+      "timeString": "10:01 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "188580330",
+        "970487256",
+        "960214085"
+      ],
+      "itemCount": 62,
+      "finalTotal": "414.30",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69ae54b345e5b949bc61b8ec",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-03-08T22:03:46.000Z",
+      "dateString": "Mar 8, 2026",
+      "timeString": "10:03 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "188560205",
+        "960085546"
+      ],
+      "itemCount": 58,
+      "finalTotal": "364.48",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69a5260645a806082021f705",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-03-01T21:53:09.000Z",
+      "dateString": "Mar 1, 2026",
+      "timeString": "09:53 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970098256",
+        "136050140",
+        "970306325"
+      ],
+      "itemCount": 50,
+      "finalTotal": "357.02",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69a0fab4fc4973277c7e2304",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-02-26T18:00:36.000Z",
+      "dateString": "Feb 26, 2026",
+      "timeString": "06:00 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960239203",
+        "970498618",
+        "186190050"
+      ],
+      "itemCount": 6,
+      "finalTotal": "53.08",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "699be1ec3f2be2191879b192",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-02-22T21:12:40.000Z",
+      "dateString": "Feb 22, 2026",
+      "timeString": "09:12 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960113629",
+        "136010013"
+      ],
+      "itemCount": 20,
+      "finalTotal": "131.70",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6994073b55bea32850f8ad8d",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-02-16T22:13:31.000Z",
+      "dateString": "Feb 16, 2026",
+      "timeString": "10:13 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960019675"
+      ],
+      "itemCount": 44,
+      "finalTotal": "307.78",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "699106e8e4e9e5295ce40577",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-02-14T15:35:01.000Z",
+      "dateString": "Feb 14, 2026",
+      "timeString": "03:35 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970031761",
+        "970487633",
+        "113050073"
+      ],
+      "itemCount": 29,
+      "finalTotal": "152.08",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "698979020063b134eca7f4c0",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-02-08T22:04:50.000Z",
+      "dateString": "Feb 8, 2026",
+      "timeString": "10:04 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "151100075",
+        "960281529"
+      ],
+      "itemCount": 40,
+      "finalTotal": "315.73",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69803fe39e8c17318c8cbb3a",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-02-01T22:10:26.000Z",
+      "dateString": "Feb 1, 2026",
+      "timeString": "10:10 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960113645"
+      ],
+      "itemCount": 53,
+      "finalTotal": "336.11",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6977042c1aad954b548c7f40",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-01-25T22:05:24.000Z",
+      "dateString": "Jan 25, 2026",
+      "timeString": "10:05 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "970078476"
+      ],
+      "itemCount": 39,
+      "finalTotal": "306.22",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "696dc5509933781774761904",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-01-18T21:46:03.000Z",
+      "dateString": "Jan 18, 2026",
+      "timeString": "09:46 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960081274"
+      ],
+      "itemCount": 58,
+      "finalTotal": "363.26",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69648b09c9dad33f1808dccc",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2026-01-11T21:47:51.000Z",
+      "dateString": "Jan 11, 2026",
+      "timeString": "09:47 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960555679"
+      ],
+      "itemCount": 52,
+      "finalTotal": "344.02",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6954bd46b3541a3d30b9919a",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-12-30T22:05:12.000Z",
+      "dateString": "Dec 30, 2025",
+      "timeString": "10:05 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960479694"
+      ],
+      "itemCount": 37,
+      "finalTotal": "289.36",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "694f2aa5d29685206c317b28",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-12-26T16:38:28.000Z",
+      "dateString": "Dec 26, 2025",
+      "timeString": "04:38 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "119950037",
+        "196052221"
+      ],
+      "itemCount": 4,
+      "finalTotal": "16.59",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69486dc057363b2918319bf0",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-12-21T13:59:53.000Z",
+      "dateString": "Dec 21, 2025",
+      "timeString": "01:59 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "970465747"
+      ],
+      "itemCount": 73,
+      "finalTotal": "507.52",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "693f9aa16ace161f40462441",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-12-14T21:19:45.000Z",
+      "dateString": "Dec 14, 2025",
+      "timeString": "09:19 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136050140",
+        "184700156"
+      ],
+      "itemCount": 41,
+      "finalTotal": "342.95",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "693b4e538e71c727501ad64a",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-12-11T15:05:49.000Z",
+      "dateString": "Dec 11, 2025",
+      "timeString": "03:05 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960109824",
+        "121150086",
+        "121300091"
+      ],
+      "itemCount": 7,
+      "finalTotal": "16.05",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69366cae4d4a961a349f33b7",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-12-07T22:13:40.000Z",
+      "dateString": "Dec 7, 2025",
+      "timeString": "10:13 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136050140",
+        "121350025"
+      ],
+      "itemCount": 36,
+      "finalTotal": "258.82",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "693382263778b81aa8e851d8",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-12-05T17:08:29.000Z",
+      "dateString": "Dec 5, 2025",
+      "timeString": "05:08 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960555677",
+        "196050883",
+        "960050144"
+      ],
+      "itemCount": 18,
+      "finalTotal": "132.76",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "692d2ae4975f5514dc7b2834",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-11-30T21:42:09.000Z",
+      "dateString": "Nov 30, 2025",
+      "timeString": "09:42 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "196050883"
+      ],
+      "itemCount": 36,
+      "finalTotal": "257.13",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6927a8d530e77923c83c00a5",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-11-26T17:26:21.000Z",
+      "dateString": "Nov 26, 2025",
+      "timeString": "05:26 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960132622",
+        "960479694",
+        "960281529"
+      ],
+      "itemCount": 16,
+      "finalTotal": "74.15",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6923f0dfc404f21fb4f42dca",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-11-23T21:44:19.000Z",
+      "dateString": "Nov 23, 2025",
+      "timeString": "09:44 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136050140",
+        "960041218"
+      ],
+      "itemCount": 50,
+      "finalTotal": "358.01",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "691a804c15e7881c3c951289",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-11-16T17:53:27.000Z",
+      "dateString": "Nov 16, 2025",
+      "timeString": "05:53 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960113645"
+      ],
+      "itemCount": 40,
+      "finalTotal": "260.57",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69156d0085fc9e09b441dc13",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-11-12T21:30:56.000Z",
+      "dateString": "Nov 12, 2025",
+      "timeString": "09:30 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "196011496",
+        "960210955",
+        "970784076"
+      ],
+      "itemCount": 8,
+      "finalTotal": "26.52",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "69117c18b6dd521ee062f30c",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-11-09T21:45:40.000Z",
+      "dateString": "Nov 9, 2025",
+      "timeString": "09:45 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970098256",
+        "960524082",
+        "136050140"
+      ],
+      "itemCount": 44,
+      "finalTotal": "330.03",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6907ed9cac92fd09205fdaaf",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-11-02T15:47:52.000Z",
+      "dateString": "Nov 2, 2025",
+      "timeString": "03:47 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "121350025",
+        "960041218"
+      ],
+      "itemCount": 49,
+      "finalTotal": "305.66",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68fefa32f992a70fac6ca960",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-10-26T21:50:44.000Z",
+      "dateString": "Oct 26, 2025",
+      "timeString": "09:50 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960555677",
+        "136050140",
+        "960041218"
+      ],
+      "itemCount": 49,
+      "finalTotal": "328.75",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68f5bcfb682f340ad8e37f18",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-10-19T21:39:50.000Z",
+      "dateString": "Oct 19, 2025",
+      "timeString": "09:39 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960050990",
+        "960479694"
+      ],
+      "itemCount": 36,
+      "finalTotal": "231.44",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68ec8c33f046a91c507fccfc",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-10-12T22:20:35.000Z",
+      "dateString": "Oct 12, 2025",
+      "timeString": "10:20 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "128201318"
+      ],
+      "itemCount": 39,
+      "finalTotal": "271.81",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68e31ca863f1c411b01f84fa",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-10-05T18:34:36.000Z",
+      "dateString": "Oct 5, 2025",
+      "timeString": "06:34 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960555677",
+        "960111073",
+        "136050140"
+      ],
+      "itemCount": 66,
+      "finalTotal": "426.58",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68dc7a74652d69263ca95a5e",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-09-30T17:48:43.000Z",
+      "dateString": "Sep 30, 2025",
+      "timeString": "05:48 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "196050883",
+        "960050144"
+      ],
+      "itemCount": 7,
+      "finalTotal": "56.67",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68d9e810274c970cd86fe0c0",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-09-28T18:59:26.000Z",
+      "dateString": "Sep 28, 2025",
+      "timeString": "06:59 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960453744"
+      ],
+      "itemCount": 46,
+      "finalTotal": "246.13",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68d765f3f6b341032caddb30",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-09-26T21:19:11.000Z",
+      "dateString": "Sep 26, 2025",
+      "timeString": "09:19 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "970487633",
+        "960439327"
+      ],
+      "itemCount": 12,
+      "finalTotal": "56.10",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68d0954fda4e92112c77e62c",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-09-21T17:15:59.000Z",
+      "dateString": "Sep 21, 2025",
+      "timeString": "05:15 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "184040105",
+        "136050140",
+        "960113645"
+      ],
+      "itemCount": 45,
+      "finalTotal": "276.29",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68c79c1beeef1e193c2f2626",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-09-14T21:54:54.000Z",
+      "dateString": "Sep 14, 2025",
+      "timeString": "09:54 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "128201318",
+        "960113645"
+      ],
+      "itemCount": 29,
+      "finalTotal": "169.80",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68be5f6852b22222e0fa33e8",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-09-07T21:45:13.000Z",
+      "dateString": "Sep 7, 2025",
+      "timeString": "09:45 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960491280"
+      ],
+      "itemCount": 60,
+      "finalTotal": "408.59",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68b64b0a78a9371d10e77f75",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-09-01T18:39:19.000Z",
+      "dateString": "Sep 1, 2025",
+      "timeString": "06:39 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960109669"
+      ],
+      "itemCount": 41,
+      "finalTotal": "273.65",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68abf00ad3454e25207d71f3",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-08-24T22:09:01.000Z",
+      "dateString": "Aug 24, 2025",
+      "timeString": "10:09 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970862451",
+        "136050140",
+        "960041218"
+      ],
+      "itemCount": 54,
+      "finalTotal": "333.48",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68a3cdc782dd092028adb214",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-08-18T18:04:59.000Z",
+      "dateString": "Aug 18, 2025",
+      "timeString": "06:04 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "184700156"
+      ],
+      "itemCount": 50,
+      "finalTotal": "311.29",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "689949a83ac9c9151859b792",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-08-10T18:38:33.000Z",
+      "dateString": "Aug 10, 2025",
+      "timeString": "06:38 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970464781",
+        "960091981",
+        "113350052"
+      ],
+      "itemCount": 17,
+      "finalTotal": "132.94",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6896d62d97a6ec1580d45120",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-08-08T22:01:45.000Z",
+      "dateString": "Aug 8, 2025",
+      "timeString": "10:01 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "165220010",
+        "970506036",
+        "165400032"
+      ],
+      "itemCount": 11,
+      "finalTotal": "106.90",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6892ed22703aa1223c204f0d",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-08-05T22:49:53.000Z",
+      "dateString": "Aug 5, 2025",
+      "timeString": "10:49 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960224102"
+      ],
+      "itemCount": 26,
+      "finalTotal": "168.54",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6887d839a4a5441f8455f11b",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-07-28T13:05:37.000Z",
+      "dateString": "Jul 28, 2025",
+      "timeString": "01:05 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "970098256",
+        "136050140",
+        "960113629"
+      ],
+      "itemCount": 19,
+      "finalTotal": "150.31",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "687f1857cbe8cb24c415c855",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-07-21T21:49:02.000Z",
+      "dateString": "Jul 21, 2025",
+      "timeString": "09:49 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960113645",
+        "960113629"
+      ],
+      "itemCount": 27,
+      "finalTotal": "181.46",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6879cca411229b0b54cddd0d",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-07-17T21:24:37.000Z",
+      "dateString": "Jul 17, 2025",
+      "timeString": "09:24 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960209527",
+        "960567249",
+        "960113629"
+      ],
+      "itemCount": 25,
+      "finalTotal": "72.94",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "687494fed7f11b0dd08333d2",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-07-13T22:26:54.000Z",
+      "dateString": "Jul 13, 2025",
+      "timeString": "10:26 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960026110"
+      ],
+      "itemCount": 44,
+      "finalTotal": "283.44",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6872f0a6d7f11b0dd05d0892",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-07-12T16:32:28.000Z",
+      "dateString": "Jul 12, 2025",
+      "timeString": "04:32 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960050990",
+        "128350286",
+        "970328528"
+      ],
+      "itemCount": 8,
+      "finalTotal": "72.06",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "686b52e711229b0b548c5c24",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-07-06T21:53:08.000Z",
+      "dateString": "Jul 6, 2025",
+      "timeString": "09:53 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960113645",
+        "960032337"
+      ],
+      "itemCount": 48,
+      "finalTotal": "321.53",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6861a8f1b53e991810ed33ad",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-06-29T13:58:11.000Z",
+      "dateString": "Jun 29, 2025",
+      "timeString": "01:58 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960041218",
+        "960209527",
+        "184700156"
+      ],
+      "itemCount": 69,
+      "finalTotal": "434.28",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6858e0aa19098c03d83ef18b",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-06-22T22:05:22.000Z",
+      "dateString": "Jun 22, 2025",
+      "timeString": "10:05 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "960113645",
+        "960224102",
+        "960124462"
+      ],
+      "itemCount": 32,
+      "finalTotal": "213.73",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "684facbc0d503f1ecc4da634",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-06-15T22:33:07.000Z",
+      "dateString": "Jun 15, 2025",
+      "timeString": "10:33 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960209527"
+      ],
+      "itemCount": 51,
+      "finalTotal": "374.68",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "68466c8355aaf922447db737",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-06-08T22:09:56.000Z",
+      "dateString": "Jun 8, 2025",
+      "timeString": "10:09 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960053815",
+        "960273447"
+      ],
+      "itemCount": 36,
+      "finalTotal": "244.37",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "683d0581166907200443bdd1",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-06-01T18:59:01.000Z",
+      "dateString": "Jun 1, 2025",
+      "timeString": "06:59 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960019675",
+        "970483742"
+      ],
+      "itemCount": 47,
+      "finalTotal": "333.85",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    },
+    {
+      "_id": "6833f539093b311344234fb8",
+      "barCode": "[REDACTED_ID]",
+      "posDateTime": "2025-05-25T21:59:49.000Z",
+      "dateString": "May 25, 2025",
+      "timeString": "09:59 PM",
+      "banner": "safeway",
+      "firstThreeBpn": [
+        "136050140",
+        "960041218",
+        "960050990"
+      ],
+      "itemCount": 32,
+      "finalTotal": "281.06",
+      "source": "INSTORE",
+      "storeName": "Safeway",
+      "includesFuel": false,
+      "includesReturn": false,
+      "paymentType": "Credit/Debit"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: safeway
+      POSTGRES_PASSWORD: safeway
+      POSTGRES_DB: safeway_analytics
+    # Host 5435 avoids clashing with other local Postgres stacks (5432/5433/5434).
+    ports:
+      - "5435:5432"
+    volumes:
+      - safeway_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U safeway -d safeway_analytics"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  flyway:
+    image: flyway/flyway:10-alpine
+    profiles:
+      - tools
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./db/sql:/flyway/sql:ro
+    environment:
+      FLYWAY_URL: jdbc:postgresql://db:5432/safeway_analytics
+      FLYWAY_USER: safeway
+      FLYWAY_PASSWORD: safeway
+      FLYWAY_LOCATIONS: filesystem:/flyway/sql
+    command: migrate
+
+volumes:
+  safeway_pg:

@@ -1,0 +1,21 @@
+{
+  "name": "safeway-analytics",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "predev": "pnpm --filter @safeway-analytics/shared build",
+    "dev": "concurrently -n api,web -c blue,magenta \"pnpm --filter @safeway-analytics/api dev\" \"pnpm --filter @safeway-analytics/web dev\"",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "db:migrate": "docker compose --profile tools run --rm flyway",
+    "db:repair": "docker compose --profile tools run --rm flyway repair",
+    "ingest": "pnpm --filter @safeway-analytics/ingestion ingest",
+    "ingest:offers": "pnpm --filter @safeway-analytics/ingestion ingest:offers"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

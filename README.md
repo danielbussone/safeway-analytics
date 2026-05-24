@@ -4,7 +4,7 @@ Personal grocery analytics for Albertsons/Safeway receipts. Ingests in-store pur
 
 **Stack:** pnpm monorepo · TypeScript · GraphQL (Yoga + Pothos) · React (Vite + Tailwind) · PostgreSQL (Flyway + pgvector)
 
-**Status:** In development — database, shared types, and ingestion CLI are in place; API and dashboard are next.
+**Status:** In development — ingestion complete (69 receipts); GraphQL API ready; dashboard next.
 
 ## Prerequisites
 
@@ -25,7 +25,6 @@ Personal grocery analytics for Albertsons/Safeway receipts. Ingests in-store pur
 ```bash
 cp .env.example .env          # fill CLUBCARD, JWT_TOKEN, etc.
 docker compose up -d db
-pnpm install
 pnpm install
 pnpm db:migrate
 ```
@@ -61,7 +60,8 @@ Paste `JWT_TOKEN` from a Safeway browser session HAR capture on first setup. Whe
 
 | Script | Description |
 |--------|-------------|
-| `pnpm dev` | GraphQL API + web (requires `apps/api` and `apps/web`) |
+| `pnpm dev` | GraphQL API at http://localhost:4001/graphql |
+| `pnpm dev:all` | API + web (once `apps/web` exists) |
 | `pnpm build` | Build all workspace packages |
 | `pnpm lint` | Typecheck all packages |
 | `pnpm db:migrate` | Run Flyway migrations |

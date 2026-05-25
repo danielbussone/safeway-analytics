@@ -4,9 +4,11 @@
 
 A personal grocery analytics application that ingests in-store receipt data from the Albertsons/Safeway API, tracks price trends, identifies discount patterns, and surfaces actionable spending insights through a React dashboard.
 
+**Roadmap:** [docs/ROADMAP.md](docs/ROADMAP.md) — MVP-B/C and later enrichment.
+
 **Owner:** Daniel Bussone  
 **Stack:** TypeScript · Node.js · React · PostgreSQL · pgvector  
-**Status:** In development  
+**Status:** MVP-A shipped (ingest + API + dashboard). Follow-up work: [docs/ROADMAP.md](docs/ROADMAP.md).  
 
 ---
 
@@ -25,7 +27,7 @@ Weekly Safeway grocery bills are high and opaque. There is no native tooling to 
 1. Automatically ingest historical and ongoing receipt data from the Albertsons API
 2. Track per-product price history derived from real purchase data
 3. Identify discount capture rate — deals taken vs. available
-4. Classify purchases as staples (≥60% trip frequency) vs. irregular
+4. Classify purchases as staples (≥50% of shopping weeks in a 90-day window) vs. irregular
 5. Surface high-cost items by unit price and cumulative spend
 6. Snapshot weekly J4U / member offers for trend analysis
 
@@ -290,7 +292,7 @@ ORDER BY day_of_week;
 ```
 ┌──────────────────────────────────────────────────────────┐
 │                     React dashboard                      │
-│  Monthly spend · Staples · High-cost · Price trends      │
+│  Spend · Staples · Category/meat insights · Deal timing  │
 └───────────────────────┬──────────────────────────────────┘
                         │ GraphQL
 ┌───────────────────────▼──────────────────────────────────┐
@@ -342,65 +344,82 @@ The Okta session has a ~90-day TTL. Strategy:
 
 ## Staples classification
 
-| Trip count | Threshold | Behavior |
-|-----------|-----------|---------|
-| < 5 trips | — | Suppress staples UI, show cold-start message |
-| 5–9 trips | ≥50% | Show as provisional, label "building history" |
-| ≥10 trips | ≥60% | Full staples classification |
+Implemented in `@safeway-analytics/shared` (`constants.ts`) and enforced in API resolvers.
+
+| Window state | Threshold | Behavior |
+|--------------|-----------|----------|
+| &lt; 5 trips or &lt; 4 active weeks (90d) | — | Cold start: suppress staples, show onboarding |
+| 4–9 active weeks | ≥50% of weeks | Provisional staples, "building history" label |
+| ≥10 active weeks | ≥50% of weeks | Full staples classification |
+
+**Frequency basis:** % of active shopping weeks (not all-time trips). **Lookback:** 90 days.
+
+**Beyond original PRD:** binned shopping categories (`productCategory.ts`), near-staples (within 15pp of threshold), meat $/lb insights, DOW deal score (365-day default).
 
 ---
 
-## Project plan
+## Project plan (original phases — completed)
 
-### Phase 1 — data foundation (week 1–2)
+> **Follow-up work** is tracked in [docs/ROADMAP.md](docs/ROADMAP.md) as MVP-B, MVP-C, and later enrichment.
+
+### Phase 1 — data foundation
 
 | Task | Description | Done |
 |------|-------------|------|
 | Repo setup | Monorepo: `apps/api`, `apps/web`, `packages/ingestion`, `packages/shared` | [x] |
-| DB schema | Flyway migrations for all tables and views | [x] |
+| DB schema | Flyway migrations V1–V8 (core tables + analytics) | [x] |
 | `.env` config | `CLUBCARD`, `HHID`, `HOME_STORE_ID`, `JWT_TOKEN` | [x] |
 | Shared types | `@safeway-analytics/shared` — API Zod schemas, env, constants | [x] |
-| `SafewayClient` | Token manager + `fetchReceiptList` + `fetchReceiptDetail` | [ ] |
-| Ingestion CLI | `pnpm ingest` — fetch, dedupe, upsert receipts + line items | [ ] |
-| Product resolver | `bpn`-first matching, name fallback, upsert new products | [ ] |
-| Price history | Append `price_history` row on each ingestion | [ ] |
-| Offers snapshot | `fetchOffers` cron — snapshot 400+ J4U offers weekly | [ ] |
-| Backfill | Ingest all historical receipts from account history | [ ] |
+| `SafewayClient` | Token manager + `fetchReceiptList` + `fetchReceiptDetail` | [x] |
+| Ingestion CLI | `pnpm ingest` — fetch, dedupe, upsert receipts + line items | [x] |
+| Product resolver | `bpn`-first matching, name fallback, upsert new products | [x] |
+| Price history | Append `price_history` row on each ingestion | [x] |
+| Shopping categories | Rule-based bins + `pnpm backfill:categories` | [x] |
+| Offers snapshot | `pnpm ingest:offers` — **blocked** (offers API key from HAR) | [ ] |
+| Backfill | Historical receipts ingested (~69 trips) | [x] |
 
-### Phase 2 — GraphQL API (week 2–3)
-
-| Task | Description | Done |
-|------|-------------|------|
-| Schema definition | `Receipt`, `Product`, `LineItem`, `PriceHistory`, `Offer` types | [ ] |
-| Analytics resolvers | Monthly spend, DOW patterns, staples, high-cost queries | [ ] |
-| Price trend resolver | Rolling 90-day trend per product | [ ] |
-| Discount capture | Capture rate by category, missed deal identification | [ ] |
-| Offers resolver | Available deals matched against purchase history | [ ] |
-
-### Phase 3 — React dashboard (week 3–4)
+### Phase 2 — GraphQL API
 
 | Task | Description | Done |
 |------|-------------|------|
-| Scaffold | React + Vite + GraphQL codegen + Tailwind | [ ] |
-| Metric cards | Total spend, avg weekly, savings, basket size | [ ] |
-| Monthly spend chart | Bar chart: spent vs. saved per month | [ ] |
-| Weekly trend chart | Line chart: 13-week rolling spend | [ ] |
-| DOW chart | Bar chart: avg basket by day of week | [ ] |
-| Category donut | Spend breakdown by department | [ ] |
-| Staples panel | Frequency-classified products with toggle | [ ] |
-| High-cost panel | Dual leaderboard: unit price + cumulative spend | [ ] |
-| Price trend view | Per-product price over time with volatility flag | [ ] |
-| Cold-start state | < 5 trips: suppress staples, show onboarding message | [ ] |
+| Schema definition | Receipt, Product, LineItem, PriceHistory, Offer types | [x] |
+| Analytics resolvers | Spend, monthly/weekly, category, staples, high-cost | [x] |
+| Price trend resolver | Per-product history + volatility stats | [x] |
+| DOW deal patterns | `dowDealPatterns` — deal score, recommended day (90–365d) | [x] |
+| Category insights | `stapleCategoryInsights`, `meatCategoryInsights` | [x] |
+| Discount capture | `discountCapture` by department (view + resolver) | [x] |
+| Offers resolver | `offers` — latest snapshot from DB | [x] |
+| Offer ↔ purchase matching | Missed-deal identification | [ ] |
+| Receipt list | `receipts` paginated query | [x] |
 
-### Phase 4 — enrichment (week 4+)
+### Phase 3 — React dashboard
 
 | Task | Description | Done |
 |------|-------------|------|
-| Discount capture UI | "You missed $X in deals this month" | [ ] |
+| Scaffold | React + Vite + Tailwind (+ codegen scaffold, hand-written types) | [x] |
+| Metric cards | Total spend, avg weekly, savings, basket size | [x] |
+| Monthly spend chart | Bar chart: spent vs. saved per month | [x] |
+| Weekly trend chart | Line chart: 13-week rolling spend | [x] |
+| DOW deal chart | Deal score by day (replaces avg-basket DOW chart) | [x] |
+| Category donut | Spend breakdown by department | [x] |
+| Staples panel | SKU staples + category insight cards + near-staples | [x] |
+| Meat insights | $/lb trends and best day for weight-sold meat | [x] |
+| High-cost panel | Dual leaderboard: unit price + cumulative spend | [x] |
+| Price trend view | Per-product price over time with volatility flag | [x] |
+| Cold-start state | Suppress staples when window history is thin | [x] |
+| Discount capture UI | Department savings breakdown | [ ] |
+| Receipt browser UI | Trip list + drill-down | [ ] |
+
+### Phase 4 — enrichment (deferred)
+
+| Task | Description | Done |
+|------|-------------|------|
+| Discount capture UI | Surface `discountCapture` + missed-deal narrative | [ ] |
+| Offers ingest fix | Wire companion-gallery API key; weekly cron | [ ] |
 | Price alerts | Flag items above your 90-day average | [ ] |
 | Brand comparison | Store brand vs. name brand price differential | [ ] |
-| DOW insight | "Your cheapest trips are on Wednesday" callout | [ ] |
-| Product normalization | LLM pass for items missing `bpn` — batch, cached | [ ] |
+| Product normalization | LLM pass for items missing `bpn` — batch, cached (pgvector) | [ ] |
+| Okta auto-refresh | Playwright re-login when refresh fails | [ ] |
 
 ---
 
@@ -431,7 +450,8 @@ safeway-analytics/
 │       └── src/
 ├── db/sql/                     # Flyway migrations (V1__*.sql)
 ├── docs/
-│   └── ARCHITECTURE.md
+│   ├── ARCHITECTURE.md
+│   └── ROADMAP.md
 ├── .env.example
 ├── PRD.md
 ├── README.md

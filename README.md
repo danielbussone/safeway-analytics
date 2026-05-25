@@ -4,7 +4,7 @@ Personal grocery analytics for Albertsons/Safeway receipts. Ingests in-store pur
 
 **Stack:** pnpm monorepo · TypeScript · GraphQL (Yoga + Pothos) · React (Vite + Tailwind) · PostgreSQL (Flyway + pgvector)
 
-**Status:** In development — ingestion complete (69 receipts); GraphQL API ready; dashboard next.
+**Status:** MVP-A complete — ingestion, GraphQL API, and React dashboard are wired. See [docs/ROADMAP.md](docs/ROADMAP.md) for follow-up phases.
 
 ## Prerequisites
 
@@ -29,13 +29,12 @@ pnpm install
 pnpm db:migrate
 ```
 
-When ingestion and the dashboard are wired up:
-
 ```bash
-pnpm ingest                   # backfill receipts from Safeway API
-pnpm ingest:offers            # snapshot J4U offers for your home store
-pnpm probe                    # probe live API (optional, before first ingest)
-pnpm dev                      # GraphQL API + React dashboard
+pnpm ingest                   # sync receipts from Safeway API
+pnpm backfill:categories      # re-apply shopping-category rules to products
+pnpm ingest:offers            # snapshot J4U offers (blocked until offers API key is configured)
+pnpm probe                    # probe live API; writes redacted samples to docs/api-discovery/
+pnpm dev:all                  # GraphQL API + React dashboard
 ```
 
 - GraphQL: http://localhost:4001/graphql
@@ -61,7 +60,8 @@ Paste `JWT_TOKEN` from a Safeway browser session HAR capture on first setup. Whe
 | Script | Description |
 |--------|-------------|
 | `pnpm dev` | GraphQL API at http://localhost:4001/graphql |
-| `pnpm dev:all` | API + web (once `apps/web` exists) |
+| `pnpm dev:all` | API + web concurrently |
+| `pnpm backfill:categories` | Re-run `shopping_category_id` rules on existing products |
 | `pnpm build` | Build all workspace packages |
 | `pnpm lint` | Typecheck all packages |
 | `pnpm db:migrate` | Run Flyway migrations |
@@ -70,12 +70,15 @@ Paste `JWT_TOKEN` from a Safeway browser session HAR capture on first setup. Whe
 | `pnpm ingest:offers` | Snapshot J4U offers for your home store |
 | `pnpm probe` | Probe live Safeway API; writes redacted samples to `docs/api-discovery/` |
 
-### Offers cron (weekly)
+### Cron (optional)
 
-After `pnpm ingest:offers` is available, schedule a weekly run to build offer history over time:
+Keep data fresh without manual runs:
 
 ```bash
-# Example crontab entry — Sundays at 8am
+# Receipts — after each shopping trip or daily
+0 9 * * * cd /path/to/safeway-analytics && pnpm ingest >> /tmp/safeway-ingest.log 2>&1
+
+# Offers — weekly, after ingest:offers works (see docs/api-discovery/FINDINGS.md)
 0 8 * * 0 cd /path/to/safeway-analytics && pnpm ingest:offers >> /tmp/safeway-offers.log 2>&1
 ```
 
@@ -89,10 +92,22 @@ packages/shared/       Safeway API types, Zod env schema, constants
 db/sql/                Flyway migrations (V1__*.sql)
 ```
 
+## Dashboard (MVP-A)
+
+- **Spend:** metric cards, monthly bar chart, weekly trend, category donut
+- **Staples:** SKU-level staples (90-day window, % of shopping weeks), binned category insights, near-staples
+- **Prices:** high-cost leaderboards, per-product price trend with volatility
+- **Timing:** day-of-week deal score (discount vs price vs overall; default 365-day lookback)
+- **Meat:** salmon / poultry / beef / pork trends on a $/lb basis for weighted items
+- **Cold start:** suppresses staples when history is too thin
+
+Not yet in the UI: discount capture by department, offers, receipt browser (API exists for the latter two).
+
 ## Docs
 
-- [Architecture](docs/ARCHITECTURE.md) — service topology, ingestion pipeline, token management
-- [PRD](PRD.md) — full product requirements and project plan
+- [Architecture](docs/ARCHITECTURE.md) — service topology, ingestion pipeline, analytics model
+- [Roadmap](docs/ROADMAP.md) — follow-up phases (MVP-B through enrichment)
+- [PRD](PRD.md) — product requirements and completed project plan
 
 ## Security
 

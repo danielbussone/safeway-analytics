@@ -67,15 +67,18 @@ export async function upsertProduct(
   await client.query(
     `
       INSERT INTO products (
-        id, bpn, upc, name, normalized_name, department, is_weight_item
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+        id, bpn, upc, name, normalized_name, department, is_weight_item,
+        shopping_category_id, shopping_category_label
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       ON CONFLICT (id) DO UPDATE SET
         bpn = COALESCE(EXCLUDED.bpn, products.bpn),
         upc = COALESCE(EXCLUDED.upc, products.upc),
         name = EXCLUDED.name,
         normalized_name = EXCLUDED.normalized_name,
         department = COALESCE(EXCLUDED.department, products.department),
-        is_weight_item = EXCLUDED.is_weight_item
+        is_weight_item = EXCLUDED.is_weight_item,
+        shopping_category_id = EXCLUDED.shopping_category_id,
+        shopping_category_label = EXCLUDED.shopping_category_label
     `,
     [
       product.id,
@@ -85,6 +88,8 @@ export async function upsertProduct(
       product.normalizedName,
       product.department,
       product.isWeightItem,
+      product.shoppingCategoryId,
+      product.shoppingCategoryLabel,
     ],
   );
 }
@@ -140,11 +145,13 @@ export async function insertPriceHistory(
     return;
   }
 
+  const priceUnit = item.weightItem ? "lb" : "each";
+
   await client.query(
     `
       INSERT INTO price_history (
-        product_id, observed_price, regular_price, observed_at, receipt_id
-      ) VALUES ($1, $2, $3, $4, $5)
+        product_id, observed_price, regular_price, observed_at, receipt_id, price_unit
+      ) VALUES ($1, $2, $3, $4, $5, $6)
     `,
     [
       productId,
@@ -152,6 +159,7 @@ export async function insertPriceHistory(
       parseMoneyValue(item.regularPrice),
       observedAt,
       receiptId,
+      priceUnit,
     ],
   );
 }

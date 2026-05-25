@@ -28,6 +28,67 @@ export type SchemaTypes = {
       avgSavings: number;
       tripCount: number;
     };
+    DowDealPattern: {
+      dayOfWeek: number;
+      dayName: string;
+      tripCount: number;
+      lineItemCount: number;
+      avgUnitPrice: number | null;
+      avgDiscountPct: number | null;
+      priceVsOverallPct: number | null;
+      discountVsOverallPct: number | null;
+      dealScore: number | null;
+    };
+    DowDealInsights: {
+      lookbackDays: number;
+      minLineItems: number;
+      recommendedDayName: string | null;
+      recommendedDealScore: number | null;
+      patterns: Array<SchemaTypes["Objects"]["DowDealPattern"]>;
+    };
+    CategoryPricePoint: {
+      period: string;
+      avgPrice: number;
+    };
+    StapleCategoryInsight: {
+      categoryId: string;
+      label: string;
+      productCount: number;
+      weekAppearances: number;
+      activeWeeks: number;
+      weekFrequencyPct: number;
+      priceTrendDirection: string | null;
+      priceChangePct: number | null;
+      priceTrend: Array<SchemaTypes["Objects"]["CategoryPricePoint"]>;
+      bestDayName: string | null;
+      bestDayDealScore: number | null;
+      sampleProductNames: string[];
+      priceUnit: string;
+    };
+    NearStapleCategory: {
+      categoryId: string;
+      label: string;
+      productCount: number;
+      weekAppearances: number;
+      activeWeeks: number;
+      weekFrequencyPct: number;
+      thresholdPct: number;
+      gapToThresholdPct: number;
+      sampleProductNames: string[];
+    };
+    StapleCategoryInsights: {
+      stapleLookbackDays: number;
+      priceLookbackDays: number;
+      activeWeeks: number;
+      thresholdPct: number;
+      items: Array<SchemaTypes["Objects"]["StapleCategoryInsight"]>;
+      nearStapleItems: Array<SchemaTypes["Objects"]["NearStapleCategory"]>;
+    };
+    MeatCategoryInsights: {
+      priceLookbackDays: number;
+      priceUnit: string;
+      items: Array<SchemaTypes["Objects"]["StapleCategoryInsight"]>;
+    };
     CategoryBreakdown: {
       department: string;
       amount: number;
@@ -37,11 +98,17 @@ export type SchemaTypes = {
       name: string;
       department: string | null;
       tripAppearances: number;
-      totalTrips: number;
+      weekAppearances: number;
+      windowTrips: number;
+      activeWeeks: number;
       frequencyPct: number | null;
       isStaple: boolean;
     };
     StaplesResult: {
+      lookbackDays: number;
+      frequencyBasis: string;
+      windowTripCount: number;
+      activeWeeks: number;
       tripCount: number;
       mode: string;
       message: string | null;

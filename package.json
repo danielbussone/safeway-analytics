@@ -15,6 +15,7 @@
     "db:repair": "docker compose --profile tools run --rm flyway repair",
     "ingest": "pnpm --filter @safeway-analytics/ingestion ingest",
     "ingest:offers": "pnpm --filter @safeway-analytics/ingestion ingest:offers",
+    "backfill:categories": "pnpm --filter @safeway-analytics/ingestion backfill:categories",
     "probe": "pnpm --filter @safeway-analytics/ingestion probe"
   },
   "devDependencies": {

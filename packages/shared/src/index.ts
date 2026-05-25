@@ -1,4 +1,8 @@
 export {
+  DOW_DEAL_LOOKBACK_DAYS,
+  DOW_DEAL_LOOKBACK_MAX_DAYS,
+  DOW_DEAL_LOOKBACK_MIN_DAYS,
+  DOW_DEAL_MIN_LINE_ITEMS,
   JWT_REFRESH_WINDOW_SEC,
   OFFER_PROGRAM_CODES,
   OFFER_PROGRAM_LABELS,
@@ -8,16 +12,39 @@ export {
   SAFEWAY_OFFERS_BASE_URL,
   SAFEWAY_OFFERS_CONTENT_TYPE,
   STAPLE_COLD_START_MAX_TRIPS,
+  STAPLE_COLD_START_MIN_WEEKS,
+  STAPLE_FREQUENCY_BASES,
+  STAPLE_FREQUENCY_BASIS,
   STAPLE_FULL_THRESHOLD,
+  STAPLE_LOOKBACK_DAYS,
   STAPLE_MODES,
   STAPLE_PROVISIONAL_MAX_TRIPS,
+  STAPLE_PROVISIONAL_MAX_WEEKS,
   STAPLE_PROVISIONAL_THRESHOLD,
+  formatStapleBasisLabel,
+  clampDowDealLookbackDays,
+  isMeatCategory,
+  MEAT_CATEGORY_IDS,
+  STAPLE_NEAR_THRESHOLD_MARGIN,
+  priceUnitLabel,
+  type MeatCategoryId,
   getStapleFrequencyThreshold,
+  getStapleFrequencyThresholdByTripCount,
   getStapleMode,
+  getStapleModeFromWindow,
   isStapleFrequency,
   type OfferProgramCode,
+  type StapleFrequencyBasis,
   type StapleMode,
 } from "./constants.js";
+
+export {
+  computeDealScore,
+  computePriceTrendDirection,
+  deriveShoppingCategory,
+  type PriceTrendDirection,
+  type ShoppingCategory,
+} from "./productCategory.js";
 
 export {
   ingestionEnvSchema,

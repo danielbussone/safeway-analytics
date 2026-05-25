@@ -1,11 +1,19 @@
 import {
+  clampDowDealLookbackDays,
+  DOW_DEAL_LOOKBACK_DAYS,
+  formatStapleBasisLabel,
   getStapleFrequencyThreshold,
-  getStapleMode,
+  getStapleModeFromWindow,
+  isStapleFrequency,
   STAPLE_COLD_START_MAX_TRIPS,
+  STAPLE_COLD_START_MIN_WEEKS,
+  STAPLE_FREQUENCY_BASIS,
+  STAPLE_LOOKBACK_DAYS,
 } from "@safeway-analytics/shared";
 import {
   fetchCategoryBreakdown,
   fetchDiscountCapture,
+  fetchDowDealPatterns,
   fetchDowPatterns,
   fetchHighCostByCumulativeSpend,
   fetchHighCostByUnitPrice,
@@ -15,6 +23,9 @@ import {
   fetchProductName,
   fetchSpendSummary,
   fetchStapleProducts,
+  fetchStapleCategoryInsights,
+  fetchMeatCategoryInsights,
+  fetchStapleWindowStats,
   fetchWeeklyTrend,
 } from "../repos/analytics.js";
 import { fetchLatestOffers } from "../repos/offers.js";
@@ -22,16 +33,23 @@ import { countReceipts, fetchReceipts } from "../repos/receipts.js";
 import { builder } from "./builder.js";
 import "./types.js";
 
-function staplesMessage(mode: string, tripCount: number): string | null {
+function staplesMessage(
+  mode: string,
+  windowTripCount: number,
+  activeWeeks: number,
+): string | null {
+  const basisLabel = formatStapleBasisLabel(STAPLE_FREQUENCY_BASIS);
+  const windowLabel = `last ${STAPLE_LOOKBACK_DAYS} days`;
+
   if (mode === "cold_start") {
-    return `Need at least ${STAPLE_COLD_START_MAX_TRIPS} trips before staples analysis (${tripCount} so far).`;
+    return `Need at least ${STAPLE_COLD_START_MAX_TRIPS} trips and ${STAPLE_COLD_START_MIN_WEEKS} active weeks in the ${windowLabel} (${windowTripCount} trips, ${activeWeeks} weeks so far).`;
   }
   if (mode === "provisional") {
-    const threshold = getStapleFrequencyThreshold(tripCount);
+    const threshold = getStapleFrequencyThreshold("provisional");
     const pct = threshold === null ? 50 : threshold * 100;
-    return `Building history — provisional staples use ${pct}% trip frequency (${tripCount} trips).`;
+    return `Building history — provisional staples use ≥${pct}% of ${basisLabel} in the ${windowLabel}.`;
   }
-  return null;
+  return `Staples use ≥50% of ${basisLabel} in the ${windowLabel} (${activeWeeks} active weeks, ${windowTripCount} trips).`;
 }
 
 builder.queryField("health", (t) =>
@@ -76,6 +94,21 @@ builder.queryField("dowPatterns", (t) =>
   }),
 );
 
+builder.queryField("dowDealPatterns", (t) =>
+  t.field({
+    type: "DowDealInsights",
+    args: {
+      lookbackDays: t.arg.int({ required: false, defaultValue: DOW_DEAL_LOOKBACK_DAYS }),
+    },
+    resolve: async (_root, args, ctx) => {
+      const lookbackDays = clampDowDealLookbackDays(
+        args.lookbackDays ?? DOW_DEAL_LOOKBACK_DAYS,
+      );
+      return fetchDowDealPatterns(ctx.pool, lookbackDays);
+    },
+  }),
+);
+
 builder.queryField("categoryBreakdown", (t) =>
   t.field({
     type: ["CategoryBreakdown"],
@@ -87,10 +120,13 @@ builder.queryField("staples", (t) =>
   t.field({
     type: "StaplesResult",
     resolve: async (_root, _args, ctx) => {
-      const summary = await fetchSpendSummary(ctx.pool);
-      const mode = getStapleMode(summary.tripCount);
-      const all = await fetchStapleProducts(ctx.pool);
-      const threshold = getStapleFrequencyThreshold(summary.tripCount);
+      const [{ windowTripCount, activeWeeks }, all] = await Promise.all([
+        fetchStapleWindowStats(ctx.pool),
+        fetchStapleProducts(ctx.pool),
+      ]);
+
+      const mode = getStapleModeFromWindow(windowTripCount, activeWeeks);
+      const threshold = getStapleFrequencyThreshold(mode);
 
       let items = all;
       if (mode === "cold_start") {
@@ -98,17 +134,36 @@ builder.queryField("staples", (t) =>
       } else if (threshold !== null) {
         items = all.filter(
           (item) =>
-            item.frequencyPct !== null && item.frequencyPct / 100 >= threshold,
+            item.frequencyPct !== null &&
+            isStapleFrequency(mode, item.frequencyPct),
         );
       }
 
       return {
-        tripCount: summary.tripCount,
+        lookbackDays: STAPLE_LOOKBACK_DAYS,
+        frequencyBasis: STAPLE_FREQUENCY_BASIS,
+        windowTripCount,
+        activeWeeks,
+        tripCount: windowTripCount,
         mode,
-        message: staplesMessage(mode, summary.tripCount),
+        message: staplesMessage(mode, windowTripCount, activeWeeks),
         items,
       };
     },
+  }),
+);
+
+builder.queryField("stapleCategoryInsights", (t) =>
+  t.field({
+    type: "StapleCategoryInsights",
+    resolve: async (_root, _args, ctx) => fetchStapleCategoryInsights(ctx.pool),
+  }),
+);
+
+builder.queryField("meatCategoryInsights", (t) =>
+  t.field({
+    type: "MeatCategoryInsights",
+    resolve: async (_root, _args, ctx) => fetchMeatCategoryInsights(ctx.pool),
   }),
 );
 

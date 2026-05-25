@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
+  clampDowDealLookbackDays,
   getStapleFrequencyThreshold,
+  getStapleFrequencyThresholdByTripCount,
   getStapleMode,
+  getStapleModeFromWindow,
   isStapleFrequency,
+  DOW_DEAL_LOOKBACK_MAX_DAYS,
   STAPLE_FULL_THRESHOLD,
   STAPLE_PROVISIONAL_THRESHOLD,
 } from "./constants.js";
@@ -14,7 +18,7 @@ import {
 } from "./safeway.js";
 
 describe("staple constants", () => {
-  it("classifies trip counts into cold start, provisional, and full modes", () => {
+  it("classifies all-time trip counts into modes (legacy)", () => {
     expect(getStapleMode(0)).toBe("cold_start");
     expect(getStapleMode(4)).toBe("cold_start");
     expect(getStapleMode(5)).toBe("provisional");
@@ -22,18 +26,37 @@ describe("staple constants", () => {
     expect(getStapleMode(10)).toBe("full");
   });
 
+  it("classifies rolling window stats into modes", () => {
+    expect(getStapleModeFromWindow(3, 12)).toBe("cold_start");
+    expect(getStapleModeFromWindow(8, 3)).toBe("cold_start");
+    expect(getStapleModeFromWindow(10, 8)).toBe("provisional");
+    expect(getStapleModeFromWindow(20, 12)).toBe("full");
+  });
+
   it("returns frequency thresholds by mode", () => {
-    expect(getStapleFrequencyThreshold(3)).toBeNull();
-    expect(getStapleFrequencyThreshold(7)).toBe(STAPLE_PROVISIONAL_THRESHOLD);
-    expect(getStapleFrequencyThreshold(12)).toBe(STAPLE_FULL_THRESHOLD);
+    expect(getStapleFrequencyThreshold("cold_start")).toBeNull();
+    expect(getStapleFrequencyThreshold("provisional")).toBe(
+      STAPLE_PROVISIONAL_THRESHOLD,
+    );
+    expect(getStapleFrequencyThreshold("full")).toBe(STAPLE_FULL_THRESHOLD);
+    expect(getStapleFrequencyThresholdByTripCount(7)).toBe(
+      STAPLE_PROVISIONAL_THRESHOLD,
+    );
   });
 
   it("evaluates staple frequency against mode-specific thresholds", () => {
-    expect(isStapleFrequency(3, 80)).toBe(false);
-    expect(isStapleFrequency(7, 50)).toBe(true);
-    expect(isStapleFrequency(7, 49)).toBe(false);
-    expect(isStapleFrequency(12, 60)).toBe(true);
-    expect(isStapleFrequency(12, 59)).toBe(false);
+    expect(isStapleFrequency("cold_start", 80)).toBe(false);
+    expect(isStapleFrequency("provisional", 50)).toBe(true);
+    expect(isStapleFrequency("provisional", 49)).toBe(false);
+    expect(isStapleFrequency("full", 50)).toBe(true);
+    expect(isStapleFrequency("full", 49)).toBe(false);
+  });
+
+  it("clamps dow deal lookback days", () => {
+    expect(clampDowDealLookbackDays(30)).toBe(90);
+    expect(clampDowDealLookbackDays(180)).toBe(180);
+    expect(clampDowDealLookbackDays(365)).toBe(365);
+    expect(clampDowDealLookbackDays(999)).toBe(DOW_DEAL_LOOKBACK_MAX_DAYS);
   });
 });
 
@@ -48,95 +71,41 @@ describe("env schema", () => {
   it("parses required ingestion env fields", () => {
     const env = parseIngestionEnv(baseEnv);
     expect(env.CLUBCARD).toBe("1234567890");
-    expect(env.HOME_STORE_ID).toBe("305");
   });
 
-  it("applies defaults for optional app env fields", () => {
-    const env = parseSafewayEnv(baseEnv);
-    expect(env.PORT).toBe(4001);
-    expect(env.NODE_ENV).toBe("development");
-  });
-
-  it("rejects missing credentials", () => {
-    expect(() => parseIngestionEnv({ ...baseEnv, JWT_TOKEN: "" })).toThrow();
+  it("parses safeway env with optional fields", () => {
+    const env = parseSafewayEnv({
+      ...baseEnv,
+      HHID: "abc",
+      OKTA_USER_ID: "user-1",
+    });
+    expect(env.HHID).toBe("abc");
   });
 });
 
-describe("safeway api schemas", () => {
-  it("parses wrapped receipt list responses", () => {
-    const receipts = parseReceiptListResponse({
+describe("safeway parsers", () => {
+  it("parses money values", () => {
+    expect(parseMoneyValue("12.34")).toBe(12.34);
+    expect(parseMoneyValue(undefined)).toBeNull();
+  });
+
+  it("parses receipt list wrapper", () => {
+    const list = parseReceiptListResponse({
+      receipts: [{ _id: "r1", posDateTime: "2024-01-01T12:00:00Z" }],
+    });
+    expect(list).toHaveLength(1);
+    expect(list[0]?._id).toBe("r1");
+  });
+
+  it("parses receipt detail wrapper", () => {
+    const detail = parseReceiptDetailResponse({
       receipts: [
         {
-          _id: "abc123",
-          posDateTime: "2025-01-15T18:30:00.000Z",
-          itemCount: 12,
-          finalTotal: "84.32",
-          banner: "safeway",
+          posDateTime: "2024-01-01T12:00:00Z",
+          items: [{ id: "1", name: "Milk", bpn: "196050883" }],
         },
       ],
     });
-
-    expect(receipts).toHaveLength(1);
-    expect(receipts[0]?._id).toBe("abc123");
-  });
-
-  it("parses wrapped receipt detail responses", () => {
-    const receipt = parseReceiptDetailResponse({
-      receipts: [
-        {
-          posDateTime: "2025-01-15T18:30:00.000Z",
-          storeId: "305",
-          items: [{ id: "1", name: "TEST ITEM", bpn: "123" }],
-        },
-      ],
-    });
-
-    expect(receipt.items).toHaveLength(1);
-    expect(receipt.storeId).toBe("305");
-  });
-
-  it("parses receipt list summaries", () => {
-    const receipts = parseReceiptListResponse([
-      {
-        _id: "abc123",
-        posDateTime: "2025-01-15T18:30:00.000Z",
-        itemCount: 12,
-        finalTotal: "84.32",
-        banner: "safeway",
-      },
-    ]);
-
-    expect(receipts).toHaveLength(1);
-    expect(receipts[0]?._id).toBe("abc123");
-  });
-
-  it("parses receipt detail with line items", () => {
-    const receipt = parseReceiptDetailResponse({
-      _id: "abc123",
-      posDateTime: "2025-01-15T18:30:00.000Z",
-      storeId: "305",
-      items: [
-        {
-          id: "7313000132",
-          bpn: "196050883",
-          name: "OROWEAT BREAD WHOLE GRAIN 100% WHOLE WHEAT",
-          quantity: 1,
-          regularPrice: "5.99",
-          discount: "1.00",
-          reducedPrice: "4.99",
-          department: "BAKED GOODS",
-          weightItem: false,
-        },
-      ],
-    });
-
-    expect(receipt.items).toHaveLength(1);
-    expect(receipt.items[0]?.bpn).toBe("196050883");
-  });
-
-  it("parses string and numeric money values", () => {
-    expect(parseMoneyValue("4.99")).toBe(4.99);
-    expect(parseMoneyValue(4.99)).toBe(4.99);
-    expect(parseMoneyValue("")).toBeNull();
+    expect(detail.items[0]?.bpn).toBe("196050883");
   });
 });

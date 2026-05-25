@@ -9,7 +9,8 @@
     "test": "vitest run",
     "probe": "pnpm exec tsx src/probe.ts",
     "ingest": "pnpm exec tsx src/ingest.ts",
-    "ingest:offers": "pnpm exec tsx src/snapshotOffers.ts"
+    "ingest:offers": "pnpm exec tsx src/snapshotOffers.ts",
+    "backfill:categories": "pnpm exec tsx src/backfillCategories.ts"
   },
   "dependencies": {
     "@safeway-analytics/shared": "workspace:*",

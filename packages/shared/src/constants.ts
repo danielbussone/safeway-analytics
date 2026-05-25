@@ -24,21 +24,47 @@ export const OFFER_PROGRAM_LABELS: Record<OfferProgramCode, string> = {
   SC: "Store coupon",
 };
 
-/** Trips below this count suppress staples UI (cold start). */
+/** Rolling window for staple and day-of-week deal analytics. */
+export const STAPLE_LOOKBACK_DAYS = 90;
+
+/** Day-of-week price/discount patterns use a longer window than staples. */
+export const DOW_DEAL_LOOKBACK_DAYS = 365;
+
+/** Optional GraphQL override bounds for dow deal lookback. */
+export const DOW_DEAL_LOOKBACK_MIN_DAYS = 90;
+export const DOW_DEAL_LOOKBACK_MAX_DAYS = 365;
+
+/** Minimum line items on a day before surfacing price/discount DOW signals. */
+export const DOW_DEAL_MIN_LINE_ITEMS = 10;
+
+export const STAPLE_FREQUENCY_BASES = ["week", "trip"] as const;
+export type StapleFrequencyBasis = (typeof STAPLE_FREQUENCY_BASES)[number];
+
+/** Default: % of active shopping weeks (handles weekly Sunday runs + smaller trips). */
+export const STAPLE_FREQUENCY_BASIS: StapleFrequencyBasis = "week";
+
+/** Trips below this count suppress staples UI (cold start), within the lookback window. */
 export const STAPLE_COLD_START_MAX_TRIPS = 5;
 
-/** Trips up to this count use provisional staple thresholds. */
+/** Fewer than this many active weeks in the window → cold start. */
+export const STAPLE_COLD_START_MIN_WEEKS = 4;
+
+/** Active weeks up to this count use provisional staple thresholds. */
+export const STAPLE_PROVISIONAL_MAX_WEEKS = 9;
+
+/** Trips up to this count use provisional staple thresholds (legacy trip-based mode). */
 export const STAPLE_PROVISIONAL_MAX_TRIPS = 9;
 
 /** Minimum purchase frequency for provisional staple classification. */
 export const STAPLE_PROVISIONAL_THRESHOLD = 0.5;
 
 /** Minimum purchase frequency for full staple classification. */
-export const STAPLE_FULL_THRESHOLD = 0.6;
+export const STAPLE_FULL_THRESHOLD = 0.5;
 
 export const STAPLE_MODES = ["cold_start", "provisional", "full"] as const;
 export type StapleMode = (typeof STAPLE_MODES)[number];
 
+/** Legacy all-time trip count mode (prefer getStapleModeFromWindow). */
 export function getStapleMode(tripCount: number): StapleMode {
   if (tripCount < STAPLE_COLD_START_MAX_TRIPS) {
     return "cold_start";
@@ -49,9 +75,26 @@ export function getStapleMode(tripCount: number): StapleMode {
   return "full";
 }
 
+export function getStapleModeFromWindow(
+  windowTripCount: number,
+  activeWeeks: number,
+): StapleMode {
+  if (
+    windowTripCount < STAPLE_COLD_START_MAX_TRIPS ||
+    activeWeeks < STAPLE_COLD_START_MIN_WEEKS
+  ) {
+    return "cold_start";
+  }
+  if (activeWeeks <= STAPLE_PROVISIONAL_MAX_WEEKS) {
+    return "provisional";
+  }
+  return "full";
+}
+
 /** Returns the frequency threshold for staple classification, or null during cold start. */
-export function getStapleFrequencyThreshold(tripCount: number): number | null {
-  const mode = getStapleMode(tripCount);
+export function getStapleFrequencyThreshold(
+  mode: StapleMode,
+): number | null {
   if (mode === "cold_start") {
     return null;
   }
@@ -61,13 +104,54 @@ export function getStapleFrequencyThreshold(tripCount: number): number | null {
   return STAPLE_FULL_THRESHOLD;
 }
 
-export function isStapleFrequency(
+/** @deprecated Use getStapleFrequencyThreshold(mode) with getStapleModeFromWindow. */
+export function getStapleFrequencyThresholdByTripCount(
   tripCount: number,
+): number | null {
+  return getStapleFrequencyThreshold(getStapleMode(tripCount));
+}
+
+export function isStapleFrequency(
+  mode: StapleMode,
   frequencyPct: number,
 ): boolean {
-  const threshold = getStapleFrequencyThreshold(tripCount);
+  const threshold = getStapleFrequencyThreshold(mode);
   if (threshold === null) {
     return false;
   }
   return frequencyPct / 100 >= threshold;
+}
+
+export function clampDowDealLookbackDays(days: number): number {
+  return Math.min(
+    DOW_DEAL_LOOKBACK_MAX_DAYS,
+    Math.max(DOW_DEAL_LOOKBACK_MIN_DAYS, Math.round(days)),
+  );
+}
+
+export const STAPLE_NEAR_THRESHOLD_MARGIN = 0.15;
+
+/** Meat categories tracked on a per-pound basis when sold by weight. */
+export const MEAT_CATEGORY_IDS = [
+  "salmon",
+  "poultry",
+  "beef",
+  "pork",
+] as const;
+
+export type MeatCategoryId = (typeof MEAT_CATEGORY_IDS)[number];
+
+export function isMeatCategory(categoryId: string): categoryId is MeatCategoryId {
+  return (MEAT_CATEGORY_IDS as readonly string[]).includes(categoryId);
+}
+
+export function priceUnitLabel(categoryId: string, isWeightItem: boolean): string {
+  if (isMeatCategory(categoryId) || isWeightItem) {
+    return "$/lb";
+  }
+  return "each";
+}
+
+export function formatStapleBasisLabel(basis: StapleFrequencyBasis): string {
+  return basis === "week" ? "shopping weeks" : "trips";
 }

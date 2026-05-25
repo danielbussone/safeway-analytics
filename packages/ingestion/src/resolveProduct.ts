@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import type { ReceiptItem } from "@safeway-analytics/shared";
+import { deriveShoppingCategory } from "@safeway-analytics/shared";
 
 const SIZE_TOKENS =
   /\b(\d+(\.\d+)?\s*(OZ|LB|LBS|CT|PK|ML|G|KG|FL\s*OZ|COUNT|EA))\b/gi;
@@ -26,6 +27,8 @@ export type ResolvedProduct = {
   normalizedName: string;
   department: string | null;
   isWeightItem: boolean;
+  shoppingCategoryId: string;
+  shoppingCategoryLabel: string;
 };
 
 export function resolveProduct(item: ReceiptItem): ResolvedProduct {
@@ -42,13 +45,18 @@ export function resolveProduct(item: ReceiptItem): ResolvedProduct {
     id = `name:${hashNormalizedName(item.name)}`;
   }
 
+  const department = item.department?.trim() ?? null;
+  const category = deriveShoppingCategory(item.name, department);
+
   return {
     id,
     bpn,
     upc,
     name: item.name,
     normalizedName,
-    department: item.department?.trim() ?? null,
+    department,
     isWeightItem: Boolean(item.weightItem),
+    shoppingCategoryId: category.id,
+    shoppingCategoryLabel: category.label,
   };
 }
